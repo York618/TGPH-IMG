@@ -6,6 +6,13 @@ $file = $_FILES['file'];//得到传输的数据
 $name = $file['name'];
 $tmp_name = $file['tmp_name'];
 $type = strtolower(substr($name,strrpos($name,'.')+1)); //得到文件类型，并且都转化成小写
+$tghsrc = getenv('TELEGRAPH_SELF_SRC');
+//判断变量是否为空值
+if ($tghsrc=='') {
+    $tghsrc = 'https://telegra.ph' ;
+else {
+    return ;
+}
 
 //判断是否是通过HTTP POST上传的
 if(!is_uploaded_file($file['tmp_name'])){
@@ -27,7 +34,7 @@ if(!is_uploaded_file($file['tmp_name'])){
     $result = array(
         'code' => '200',
         'status' => 'success',
-        'src' => 'https://telegra.ph'.$src
+        'src' => $tghsrc.$src
         );
     //$result= json_encode($result,JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
     $result= json_encode($result);

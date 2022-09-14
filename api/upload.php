@@ -10,8 +10,6 @@ $tghsrc = getenv('TELEGRAPH_SELF_SRC');
 //判断变量是否为空值
 if ($tghsrc=='') {
     $tghsrc = 'https://telegra.ph' ;
-else {
-    return ;
 }
 
 //判断是否是通过HTTP POST上传的
